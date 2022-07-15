@@ -1,4 +1,4 @@
-package com.twitter;
+package com.twitter.exception;
 
 public class QuoteException extends RuntimeException{
 
