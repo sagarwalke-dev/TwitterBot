@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "scheduler.interval",
+    "type": "java.lang.String",
+    "description": "A description for 'scheduler.interval'"
+  },
+  {
+    "name": "quotes.url",
+    "type": "java.lang.String",
+    "description": "A description for 'quotes.url'"
+  }
+]}
