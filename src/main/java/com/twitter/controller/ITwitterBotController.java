@@ -14,5 +14,11 @@ public interface ITwitterBotController {
 			@ApiResponse(code = 401, message = "Bad Request"), })
 	@GetMapping("/generateQuote")
 	public String generateQuote();
-	
+
+	@ApiOperation("Post tweet on twitter")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Tweet posted successfully"),
+			@ApiResponse(code = 500, message = "Internal Server Error"),
+			@ApiResponse(code = 401, message = "Bad Request"), })
+	@GetMapping("/tweetQuote")
+	public String tweetQuote();
 }

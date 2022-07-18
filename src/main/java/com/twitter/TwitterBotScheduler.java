@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.twitter.configuration.SchedulerConfig;
 import com.twitter.service.QuoteService;
-import com.twitter.service.TwitterBotService;
+import com.twitter.service.TwitterService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,11 +20,11 @@ public class TwitterBotScheduler implements ApplicationRunner {
 
 	private TaskScheduler taskScheduler;
 	private SchedulerConfig schedulerConfig;
-	private TwitterBotService twitterBotService;
+	private TwitterService twitterBotService;
 
 	@Autowired
 	public TwitterBotScheduler(@Qualifier("botScheduler") TaskScheduler taskScheduler, SchedulerConfig schedulerConfig,
-			TwitterBotService twitterBotService) {
+			TwitterService twitterBotService) {
 		super();
 		this.taskScheduler = taskScheduler;
 		this.schedulerConfig = schedulerConfig;

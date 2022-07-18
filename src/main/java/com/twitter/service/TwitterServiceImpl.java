@@ -1,7 +1,11 @@
 package com.twitter.service;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.twitter.exception.QuoteException;
+import com.twitter.exception.TwitterException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class TwitterBotServiceImpl implements TwitterBotService {
+public class TwitterServiceImpl implements TwitterService {
 	@Autowired
 	private QuoteService quoteService;
 
@@ -21,7 +25,9 @@ public class TwitterBotServiceImpl implements TwitterBotService {
 		try {
 			log.info("calling postTweet service");
 			quoteService.getRandomQuote();
-		} catch (Exception e) {
+		} catch (TwitterException e) {
+			log.error("Error while posting tweet: {}", ExceptionUtils.getStackTrace(e));
+			throw new TwitterException();
 		}
 	}
 

@@ -5,6 +5,6 @@ package com.twitter.service;
  * @email sagarwalke7030@gmail.com
  * @date 15-Jul-2022
  */
-public interface TwitterBotService {
+public interface TwitterService {
 	public void postTweet();
 }
