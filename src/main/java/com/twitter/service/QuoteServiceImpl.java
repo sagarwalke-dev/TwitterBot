@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import com.twitter.entity.Quotes;
 import com.twitter.exception.QuoteException;
 
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
+@NoArgsConstructor
 public class QuoteServiceImpl implements QuoteService {
 
 	private RestTemplate restTemplate;
@@ -42,23 +44,18 @@ public class QuoteServiceImpl implements QuoteService {
 	 */
 	@Override
 	public String getRandomQuote() {
-		ResponseEntity<Quotes> response = null;
+		Quotes response = null;
 		Quotes quote = null;
 		HttpEntity<String> httpEntity = null;
 		try {
 			log.info("caaling getRandomQuote");
 			httpEntity = new HttpEntity<>(StringUtils.EMPTY);
-			response = restTemplate.exchange(quoteUrl, HttpMethod.GET, httpEntity, Quotes.class);
-			log.info("Random response:  {}", response);
-			quote = response.getBody();
-			if (quote != null) {
-				return quote.getQuotes().get(0).getText();
-			}
+			return restTemplate.exchange(quoteUrl, HttpMethod.GET, httpEntity, Quotes.class).getBody().getQuotes()
+					.get(0).getText();
 		} catch (QuoteException e) {
 			log.error("Error while getting random quote: {}", ExceptionUtils.getStackTrace(e));
 			throw new QuoteException();
 		}
-		return null;
 	}
 
 }
