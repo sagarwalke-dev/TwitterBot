@@ -56,7 +56,7 @@ public class QuoteServiceImpl implements QuoteService {
 			}
 		} catch (QuoteException e) {
 			log.error("Error while getting random quote: {}", ExceptionUtils.getStackTrace(e));
-			throw new QuoteException(e);
+			throw new QuoteException();
 		}
 		return null;
 	}
